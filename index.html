@@ -17,27 +17,146 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1220'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='26' text-anchor='middle' fill='%23F3F6FB'%3EK%3Ctspan fill='%2360A5FA'%3ES%3C/tspan%3E%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="fonts.css">
 <style>
-body{margin:0;background:#F6F7F9}
-a{color:#1D4ED8}a:hover{color:#1E3A8A}
-.ln{opacity:0;animation:lnIn .45s ease-out forwards}
-.l1{animation-delay:.2s}.l2{animation-delay:.55s}.l3{animation-delay:.9s}.l4{animation-delay:1.25s}.l5{animation-delay:1.6s}.l6{animation-delay:1.95s}.l7{animation-delay:2.3s}
-@keyframes lnIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.cur{display:inline-block;width:9px;height:17px;background:#60A5FA;vertical-align:-3px;animation:blink 1.1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.pulse{animation:pulse 2.4s ease-in-out infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}50%{box-shadow:0 0 0 6px rgba(52,211,153,0)}}
-.tp{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;width:0;animation:tp .7s steps(16,end) forwards}
-@keyframes tp{to{width:var(--w)}}
-.glow{box-shadow:0 30px 80px -20px rgba(37,99,235,.45),0 0 0 1px #22314F}
-@media (prefers-reduced-motion: reduce){.ln{animation:none;opacity:1}.tp{animation:none;width:auto}.pulse,.cur{animation:none}}
+body{margin:0;background:#FFFFFF}
+.pg{--ink:#141A26; --body:#3A4356; --muted:#5B6478; --accent:#1D4ED8; --line:#E3E7EE;
+  --dark:#0B1220; --on-dark:#F3F6FB; --on-dark-soft:rgba(243,246,251,.72); --accent-soft:#93C5FD;
+  --paper:#FFFFFF; --tint:#F6F7F9;
+  --t1:56px; --t2:36px; --t3:20px; --t4:18px; --t5:16px; --t6:14px;
+  --r1:8px; --r2:16px;
+  --wrap:1120px;}
+.pg *{box-sizing:border-box}
+.pg{margin:0;font-family:Inter,system-ui,sans-serif;font-size:var(--t5);line-height:1.6;color:var(--body);background:var(--paper)}
+.pg h1,.pg h2,.pg h3,.pg p,.pg ul,.pg dl,.pg dd{margin:0}
+.pg ul{padding:0;list-style:none}
+.pg a{color:var(--accent);text-decoration:none}
+.pg a:hover{text-decoration:underline}
+.pg :focus-visible{outline:3px solid #60A5FA;outline-offset:3px;border-radius:var(--r1)}
+.pg .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.pg .display{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.1}
+.pg h1.display{font-size:var(--t1)}
+.pg h2.display{font-size:var(--t2);max-width:720px}
+.pg h3{font-size:var(--t3);font-weight:600;color:var(--ink);line-height:1.3}
+.pg .label{font-size:var(--t6);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.pg .lead{font-size:var(--t4);max-width:680px;margin-top:16px}
+.pg .meta{font-size:var(--t6);color:var(--muted)}
+.pg section{padding:88px 0}
+.pg .tint{background:var(--tint)}
+.pg .head{margin-bottom:44px}
+.pg .btn{display:inline-block;font-weight:600;font-size:var(--t5);padding:12px 20px;border-radius:var(--r1);border:1px solid transparent}
+.pg .btn:hover{text-decoration:none}
+.pg .btn.solid{background:#2563EB;color:#fff}
+.pg .btn.ghost{border-color:rgba(243,246,251,.28);color:var(--on-dark)}
+.pg .more{font-weight:600;font-size:var(--t6)}
+.pg .dark{background:var(--dark);color:var(--on-dark-soft)}
+.pg .dark .display{color:var(--on-dark)}
+.pg header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:20px}
+.pg .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--t4);color:var(--on-dark)}
+.pg nav{display:flex;gap:28px;align-items:center;font-size:var(--t6)}
+.pg nav a{color:var(--on-dark-soft)}
+.pg nav a.btn{color:var(--dark);background:var(--on-dark);padding:8px 14px;font-size:var(--t6)}
+.pg .hero{padding:64px 0 88px}
+.pg .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+.pg .hero .label{color:var(--accent-soft);text-transform:none;letter-spacing:0;font-weight:500}
+.pg .hero .lead{color:var(--on-dark-soft);max-width:520px;margin-top:24px}
+.pg .hero .cta{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
+.pg .term{background:#0E1626;border:1px solid #1F2C47;border-radius:var(--r2);font-family:'JetBrains Mono',monospace;font-size:var(--t6);line-height:1.75;color:var(--on-dark-soft)}
+.pg .term .bar{display:flex;gap:8px;align-items:center;padding:14px 20px;border-bottom:1px solid #1F2C47}
+.pg .term .bar i{width:10px;height:10px;border-radius:50%;background:#2A3A5C}
+.pg .term .body{padding:24px 28px 28px}
+.pg .term .who{display:flex;gap:16px;align-items:center;margin-bottom:20px}
+.pg .term .who img{width:56px;height:56px;border-radius:50%}
+.pg .term b{color:var(--on-dark);font-weight:500}
+.pg .term dl{display:grid;grid-template-columns:112px 1fr;row-gap:2px}
+.pg .term dt{color:var(--accent-soft)}
+.pg .term .grp{color:var(--on-dark);margin:18px 0 6px}
+.pg .term .grp:first-of-type{margin-top:0}
+.pg .stats{padding:48px 0;border-bottom:1px solid var(--line)}
+.pg .stats ul{display:grid;grid-template-columns:repeat(4,1fr);gap:48px}
+.pg .stats b{display:block;font-family:'Space Grotesk',sans-serif;font-size:var(--t2);font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:8px}
+.pg .stats li{font-size:var(--t6)}
+.pg .stats p{margin-top:32px}
+.pg .cols{display:grid;gap:48px 48px}
+.pg .c3{grid-template-columns:repeat(3,1fr)}
+.pg .c4{grid-template-columns:repeat(4,1fr)}
+.pg .c2{grid-template-columns:repeat(2,1fr)}
+.pg .item{border-top:1px solid var(--line);padding-top:24px}
+.pg .item svg{color:var(--accent);margin-bottom:14px;display:block}
+.pg .item h3{margin-bottom:12px}
+.pg .item li{position:relative;padding-left:18px;margin-bottom:8px}
+.pg .item li:before{content:"";position:absolute;left:0;top:.68em;width:6px;height:1.5px;background:var(--muted)}
+.pg details{margin-top:4px}
+.pg summary{cursor:pointer;font-size:var(--t6);font-weight:600;color:var(--accent);list-style:none}
+.pg summary::-webkit-details-marker{display:none}
+.pg summary:after{content:" +"}
+.pg details[open] summary:after{content:" −"}
+.pg details ul{margin-top:10px}
+.pg .exp{display:grid;grid-template-columns:300px 1fr;gap:64px}
+.pg .exp ol{margin:0;padding:0;list-style:none}
+.pg .exp ol li{display:grid;grid-template-columns:180px 1fr;gap:24px;padding:20px 0;border-top:1px solid var(--line)}
+.pg .exp ol li:first-child{padding-top:0;border-top:0}
+.pg .exp .role{color:var(--ink);font-weight:500;margin:2px 0 6px}
+.pg .stack{border-top:1px solid var(--line)}
+.pg .stack div{display:grid;grid-template-columns:260px 1fr;gap:24px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pg .stack dt{color:var(--ink);font-weight:600}
+.pg .card{border-radius:var(--r2);border:1px solid var(--line);padding:32px;background:var(--paper)}
+.pg .feature{background:var(--dark);border-color:var(--dark);color:var(--on-dark-soft);display:grid;grid-template-columns:1.5fr 1fr;gap:56px;padding:48px;margin-bottom:24px}
+.pg .feature h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--t2);color:var(--on-dark);line-height:1.15;margin:8px 0 16px}
+.pg .feature .meta{color:var(--accent-soft)}
+.pg .feature ul{margin:20px 0 28px}
+.pg .feature li{padding-left:22px;position:relative;margin-bottom:6px;color:var(--on-dark)}
+.pg .feature li:before{content:"→";position:absolute;left:0;color:var(--accent-soft)}
+.pg .feature .eng{margin-top:28px;padding-top:20px;border-top:1px solid #1F2C47;display:flex;gap:24px;flex-wrap:wrap;font-size:var(--t6)}
+.pg .feature .eng a{color:var(--accent-soft)}
+.pg .flow{align-self:center;position:relative}
+.pg .flow:before{content:"";position:absolute;left:21px;top:22px;bottom:22px;width:1px;background:#2A3A5C}
+.pg .flow li{display:flex;align-items:center;gap:16px;padding:0;margin-bottom:22px;font-weight:500}
+.pg .flow li:last-child{margin-bottom:0}
+.pg .flow li:before{content:none}
+.pg .flow span{width:44px;height:44px;border-radius:50%;border:1px solid #3B5B92;background:var(--dark);display:flex;align-items:center;justify-content:center;color:var(--accent-soft);position:relative;flex:none}
+.pg .card h3{margin:6px 0 10px}
+.pg .card p+p{margin-top:16px}
+.pg .proof{display:flex;flex-direction:column}
+.pg .proof .num{margin-top:auto}
+.pg .proof b{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--t2);color:var(--accent);line-height:1.1;margin:20px 0 6px}
+.pg .proof .meta{display:block;margin-bottom:8px}
+.pg .certs{border-top:1px solid var(--line);margin-bottom:56px}
+.pg .certs a{display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);color:inherit}
+.pg .certs a:hover{text-decoration:none;background:var(--tint)}
+.pg .certs img{width:48px;height:48px;object-fit:contain}
+.pg .certs strong{color:var(--ink);font-weight:600}
+.pg .edu li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+.pg .edu img{width:40px;height:40px;border-radius:var(--r1);object-fit:contain}
+.pg .edu .tile{width:40px;height:40px;border-radius:var(--r1);background:var(--tint);color:var(--muted);font-size:var(--t6);font-weight:600;display:flex;align-items:center;justify-content:center}
+.pg .edu strong{color:var(--ink);font-weight:600;display:block}
+.pg .edu h3{margin-bottom:16px}
+.pg .contact .wrap{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center}
+.pg .contact .lead{color:var(--on-dark-soft)}
+.pg .contact .cta{display:flex;flex-direction:column;gap:12px;min-width:280px;text-align:center}
+.pg .contact .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pg footer{border-top:1px solid #1C2840;padding:24px 0}
+.pg footer .wrap{display:flex;justify-content:space-between;font-size:var(--t6)}
+.pg footer a{color:var(--on-dark-soft);text-decoration:underline}
 </style>
 <style>
-@media (max-width: 900px){ .navl{display:none} .navlinks{gap:12px} }
 html{scroll-behavior:smooth}
-:focus-visible{outline:3px solid #60A5FA;outline-offset:3px;border-radius:6px}
-.skip{position:absolute;left:12px;top:-60px;z-index:10;background:#F3F6FB;color:#0B1220;padding:10px 14px;border-radius:8px;font-weight:600;text-decoration:none}
-.skip:focus{top:12px}
+:focus-visible{outline:3px solid #60A5FA;outline-offset:3px;border-radius:8px}
+.pg .skip{position:absolute;left:12px;top:-60px;z-index:10;background:#F3F6FB;color:#0B1220;padding:10px 14px;border-radius:8px;font-weight:600;text-decoration:none}
+.pg .skip:focus{top:12px}
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+@media (max-width:900px){
+.pg{--t1:40px;--t2:28px}
+.pg section{padding:72px 0}
+.pg nav a:not(.btn){display:none}
+.pg .hero .wrap,.pg .exp,.pg .feature,.pg .contact .wrap{grid-template-columns:1fr;gap:40px}
+.pg .c3,.pg .c4,.pg .c2,.pg .stats ul{grid-template-columns:1fr 1fr;gap:32px 24px}
+.pg .exp ol li,.pg .stack div{grid-template-columns:1fr;gap:4px}
+.pg .feature{padding:28px}
+.pg .certs a{grid-template-columns:48px 1fr}
+.pg .certs a .meta:last-child{grid-column:2}
+}
+@media (max-width:560px){
+.pg .c3,.pg .c4,.pg .c2{grid-template-columns:1fr}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfilePage","url":"https://kstarev.dev/",
@@ -50,340 +169,89 @@ html{scroll-behavior:smooth}
 </script>
 </head>
 <body>
-<div style="font-family: Inter, system-ui, sans-serif; color: #141A26; background: #F6F7F9; min-height: 100vh">
+<div class="pg">
 <a class="skip" href="#main">Skip to main content</a>
-
-<header style="background: #0B1220; border-bottom: 1px solid #1C2840">
-<nav aria-label="Main" style="max-width: 1160px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F3F6FB">
-<span style="width: 34px; height: 34px; border-radius: 9px; background: #13284A; border: 1px solid #2A4A7F; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px">K<span style="color: #60A5FA">S</span></span>
-<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Kris Starev</span>
-</a>
-<div class="navlinks" style="display: flex; flex-wrap: wrap; align-items: center; gap: 22px; font-size: 15px">
-<a class="navl" href="#now" style="color: #B6C0D3; text-decoration: none">What I do</a>
-<a class="navl" href="#experience" style="color: #B6C0D3; text-decoration: none">Experience</a>
-<a class="navl" href="#skills" style="color: #B6C0D3; text-decoration: none">Skills</a>
-<a class="navl" href="#projects" style="color: #B6C0D3; text-decoration: none">Projects</a>
-<a class="navl" href="#certifications" style="color: #B6C0D3; text-decoration: none">Certifications</a>
-<a class="navl" href="#contact" style="color: #B6C0D3; text-decoration: none">Contact</a>
-<a href="https://www.linkedin.com/in/kris-starev" style="color: #0B1220; background: #F3F6FB; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 600">LinkedIn</a>
-</div>
-</nav>
-</header>
+<header class="dark"><div class="wrap"><a class="brand" href="#top">Kris Starev</a>
+<nav aria-label="Main"><a href="#now">What I do</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a><a class="btn" href="https://www.linkedin.com/in/kris-starev">LinkedIn</a></nav></div></header>
 <main id="main">
+<section class="dark hero" id="top"><div class="wrap">
+<div><p class="label">Kris Starev · Team Lead, IT Engineering @ Taktile · Berlin</p>
+<h1 class="display">I run IT for remote and hybrid teams, and I build the AI that helps.</h1>
+<p class="lead">Team Lead in Berlin, 9 years in IT across Canada and Germany. I started on the service desk; now I automate identity, devices and support with code, and measure that it works.</p>
+<div class="cta"><a class="btn solid" href="#now">See what I do</a><a class="btn ghost" href="https://www.linkedin.com/in/kris-starev">View LinkedIn profile</a></div></div>
+<div class="term" aria-label="Summary card"><div class="bar"><i></i><i></i><i></i><span>kris@berlin: ~</span></div><div class="body">
+<div class="who"><img src="memoji.png" alt="" width="56" height="56"><div>$ kris --help<br><b>Kris Starev</b> · Team Lead, IT Engineering</div></div>
+<p class="grp">What I do</p><dl>
+<dt>Identity</dt><dd>who can access what, day one to last day</dd>
+<dt>Hardware</dt><dd>devices from purchase to recycling</dd>
+<dt>Software</dt><dd>SaaS apps, licenses and renewals</dd>
+<dt>Vendors</dt><dd>contracts, negotiations and renewals</dd>
+<dt>AI agents</dt><dd>bots that answer and close IT tickets</dd>
+<dt>Compliance</dt><dd>SOC 2 and ISO 27001 audits</dd></dl>
+<p class="grp">Quick facts</p><dl>
+<dt>Based in</dt><dd>Berlin, Germany (CET)</dd>
+<dt>Citizen</dt><dd>EU + Canada</dd>
+<dt>Languages</dt><dd>English native, German A1</dd>
+<dt>Works</dt><dd>remote or hybrid</dd>
+<dt>Offices</dt><dd>Berlin · Munich · Iași · London · New York</dd></dl>
+</div></div></div></section>
 
-<section id="top" style="background: #0B1220; color: #F3F6FB; padding: 72px 24px 96px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
-<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: .02em; color: #93C5FD">Kris Starev · Team Lead, IT Engineering @ Taktile · Berlin</p>
-<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(40px, 5.6vw, 64px); line-height: 1.05; letter-spacing: -0.02em">I run IT for remote and hybrid teams, and I build the AI that helps.</h1>
-<p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.6; color: #B6C0D3; max-width: 640px">Team Lead in Berlin, 9 years in IT across Canada and Germany. I started on the service desk; now I automate identity, devices and support with code, and measure that it works.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a href="#now" style="background: #2563EB; color: #FFFFFF; text-decoration: none; padding: 14px 22px; border-radius: 10px; font-weight: 600; font-size: 16px">See what I do</a>
-<a href="https://www.linkedin.com/in/kris-starev" style="color: #F3F6FB; text-decoration: none; padding: 13px 21px; border-radius: 10px; font-weight: 600; font-size: 16px; border: 1px solid #34466B">View LinkedIn profile</a>
-</div>
-</div>
+<section class="stats"><div class="wrap"><ul>
+<li><b>9 years</b>in IT across Canada and Germany, from the service desk to team lead</li>
+<li><b>5 offices</b>across Europe and the US, plus remote staff, supported by my team</li>
+<li><b>450+ people</b>the size I scaled IT to, from 100, at a fast-growing company</li>
+<li><b>100%</b>of company laptops brought under device management</li></ul>
+<p class="meta">Every number and fact on this page is real and comes from my own work.</p></div></section>
 
-<div class="glow" style="flex: 1 1 560px; min-width: 0; background: #0A1324; border-radius: 18px; overflow: hidden">
-<div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #0E1729; border-bottom: 1px solid #1F2C47">
-<span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840"></span>
-<span style="margin-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8D99B0">kris@berlin: ~</span>
-</div>
-<div style="padding: 20px 26px 24px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.75; color: #D4DBE8">
-<div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px">
-<span style="position: relative; flex: none">
-<img src="memoji.png" alt="Kris Starev's memoji" style="width: 72px; height: 72px; border-radius: 50%; object-fit: cover; background: linear-gradient(160deg, #1D4ED8, #60A5FA); border: 2px solid #2A4A7F; display: block">
-<span class="pulse" style="position: absolute; right: 2px; bottom: 2px; width: 14px; height: 14px; border-radius: 50%; background: #34D399; border: 3px solid #0A1324"></span>
-</span>
-<div>
-<div><span style="color: #34D399">$</span> <span class="tp" style="--w: 11ch; animation-delay: .1s">kris --help</span></div>
-<div class="ln" style="animation-delay: .8s"><span style="color: #F3F6FB; font-weight: 700">Kris Starev</span> <span style="color: #8D99B0">—</span> Team Lead, IT Engineering <span style="color: #60A5FA; white-space: nowrap">@ Taktile</span></div>
-</div>
-</div>
-<div class="ln" style="animation-delay: 1.0s; color: #B6C0D3; margin-bottom: 12px">I run IT for remote and hybrid teams. I started on the<br>service desk; now I automate it, so help takes minutes.</div>
-<div class="ln" style="animation-delay: 1.15s; color: #F59E0B; font-weight: 700">What I do:</div>
-<div class="ln" style="animation-delay: 1.25s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #60A5FA">Identity</span><span>who can access what, day one to last day</span></div>
-<div class="ln" style="animation-delay: 1.33s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #60A5FA">Hardware</span><span>devices from purchase to recycling</span></div>
-<div class="ln" style="animation-delay: 1.41s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #60A5FA">Software</span><span>SaaS apps, licenses and renewals</span></div>
-<div class="ln" style="animation-delay: 1.49s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #60A5FA">Vendors</span><span>contracts, negotiations and renewals</span></div>
-<div class="ln" style="animation-delay: 1.57s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #60A5FA">AI agents</span><span>bots that answer and close IT tickets</span></div>
-<div class="ln" style="animation-delay: 1.65s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #60A5FA">Compliance</span><span>SOC 2 and ISO 27001 audits</span></div>
-<div class="ln" style="animation-delay: 1.73s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #60A5FA">Offices</span><span>Berlin (DE) · Munich (DE) · Iași (RO)</span></div>
-<div class="ln" style="animation-delay: 1.75s; display: grid; grid-template-columns: 12ch 1fr"><span></span><span>London (UK) · New York (US)</span></div>
-<div class="ln" style="animation-delay: 1.77s; display: grid; grid-template-columns: 12ch 1fr"><span></span><span style="color: #8D99B0">+ São Paulo (BR), coming soon</span></div>
-<div class="ln" style="animation-delay: 1.9s; color: #F59E0B; font-weight: 700; margin-top: 12px">Quick facts:</div>
-<div class="ln" style="animation-delay: 2.0s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #A78BFA">Based in</span><span>Berlin, Germany (CET)</span></div>
-<div class="ln" style="animation-delay: 2.08s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #A78BFA">Citizen</span><span>EU + Canada</span></div>
-<div class="ln" style="animation-delay: 2.16s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #A78BFA">Languages</span><span>English native, German A1</span></div>
-<div class="ln" style="animation-delay: 2.24s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #A78BFA">Works</span><span>remote or hybrid</span></div>
-<div class="ln" style="animation-delay: 2.32s; display: grid; grid-template-columns: 12ch 1fr"><span style="color: #A78BFA">Visa</span><span>sponsorship welcome outside the EU</span></div>
-<div class="ln" style="animation-delay: 2.6s; margin-top: 10px"><span style="color: #34D399">$</span> <span class="cur"></span></div>
-</div>
-</div>
-</div>
-</section>
-<section aria-label="By the numbers" style="background: #FFFFFF; border-bottom: 1px solid #E3E7EE; padding: 40px 24px">
-<div style="max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px">
-<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #141A26">9 years</div><div style="font-size: 14px; color: #3A4356; line-height: 1.45">in IT across Canada and Germany, from the service desk to team lead</div></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #141A26">5 offices</div><div style="font-size: 14px; color: #3A4356; line-height: 1.45">across Europe and the US, plus remote staff, supported by my team. Brazil is next.</div></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #1D4ED8">AI-first</div><div style="font-size: 14px; color: #3A4356; line-height: 1.45">IT support: AI agents I built file and close everyday tickets</div></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #141A26">100 → 450+</div><div style="font-size: 14px; color: #3A4356; line-height: 1.45">employees I scaled IT for at a fast-growing company</div></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #141A26">100%</div><div style="font-size: 14px; color: #3A4356; line-height: 1.45">of company laptops brought under device management</div></div>
-</div>
-<p style="max-width: 1160px; margin: 24px auto 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5B6478">// every number and fact on this page is real and comes from my own work</p>
-</section>
-<section id="now" aria-labelledby="now-h" style="padding: 96px 24px 56px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 780px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #1D4ED8">// what I do now · Taktile</p>
-<h2 id="now-h" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.01em">I own IT for a hybrid company with offices in Europe and the US.</h2>
-<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3A4356">Taktile is a Series C fintech. I lead IT engineering for about 250 people working remotely and across offices in Berlin and Munich (Germany), London (UK), New York (US) and Iași (Romania), with São Paulo (Brazil) coming soon. If I've done something twice, the third time is a pull request.</p>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+<section class="tint" id="now"><div class="wrap"><div class="head"><p class="label">What I do now · Taktile</p>
+<h2 class="display">I own IT for a hybrid company with offices in Europe and the US.</h2>
+<p class="lead">Taktile is a Series C fintech. I lead IT engineering for about 250 people, remote and across five offices. If I've done something twice, the third time is a pull request.</p></div>
+<div class="cols c3"><div class="item"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 3.6L18 7.3l-3 2.9.7 4.1L12 12.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"></path><path d="M5 19h14"></path></svg><h3>AI and automation</h3><ul><li>Built AI agents that file and close everyday IT tickets</li><li>Launched an AI assistant that answers People/HR questions instantly</li><li>Cut manual IT effort by 35%+ through automation</li></ul><details><summary>2 more</summary><ul><li>Automated every Slack profile with a nightly HRIS sync: always current, nobody fills anything in</li><li>Replaced a paid coffee-chat tool with my own GitHub + Slack bot, company-wide: no server, vendor or licence fees</li></ul></details></div><div class="item"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg><h3>Identity and access</h3><ul><li>Automated the access-request lifecycle, from request to approval to removal</li><li>Own the hire-to-retire journey: onboarding, moves and offboarding</li><li>Rolled out SSO across business tools, and help run quarterly access reviews</li></ul><details><summary>1 more</summary><ul><li>Reviewed and locked down the third-party apps connected to Google Workspace</li></ul></details></div><div class="item"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg><h3>Security and compliance</h3><ul><li>Own SOC 2 Type II and ISO 27001 controls, tests and vendor reviews</li><li>Lead incident response, from containment to post-mortem</li><li>Rolled out endpoint protection and company-wide data-retention policies</li></ul><details><summary>1 more</summary><ul><li>Prepare controls and evidence for external audits</li></ul></details></div><div class="item"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><h3>Devices and fleet</h3><ul><li>Brought 100% of laptops under device management, audit-ready</li><li>Automated patching and security checks across the whole fleet</li><li>Wrote and rolled out the hardware procurement and disposal policy for every site</li></ul><details><summary>1 more</summary><ul><li>Built asset inventory for devices outside MDM</li></ul></details></div><div class="item"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11"></path><path d="M9 20v-6h6v6"></path></svg><h3>Offices for a hybrid company</h3><ul><li>Got a new New York office fully running in two weeks: internet, meeting-room AV, room booking</li><li>Set up or rebuilt office IT in Berlin, Munich and Iași (Romania), with fast, stable internet</li><li>Put visitor logs and audit evidence in place in every office</li></ul><details><summary>1 more</summary><ul><li>Gave an office remote control of its own heating and cooling. Yes, IT does HVAC now</li></ul></details></div><div class="item"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c1-3.5 3.3-5 6-5s5 1.5 6 5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 15c2.5 0 4.3 1.6 5 4"></path></svg><h3>Leading the team</h3><ul><li>Grew IT from one person to two: wrote the hiring brief and ran the technical interviews</li><li>Added a New York engineer, so IT covers both European and US hours</li><li>Built a live IT dashboard so any team can see IT's load and speed without asking</li></ul><details><summary>1 more</summary><ul><li>Write decision records and policy proposals before big changes</li></ul></details></div></div></div></section>
 
-<article style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: center; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 3.6L18 7.3l-3 2.9.7 4.1L12 12.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"></path><path d="M5 19h14"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">AI and automation</h3></div>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.6; color: #3A4356; display: flex; flex-direction: column; gap: 6px">
-<li>Built AI agents that file and close everyday IT tickets</li>
-<li>Launched an AI assistant that answers People/HR questions instantly, cutting repeat questions to the People team</li>
-<li>Automated every Slack profile with a nightly HRIS sync: always current, nobody fills anything in</li>
-<li>Replaced a paid coffee-chat tool with my own GitHub + Slack bot, company-wide: no server, vendor or licence fees</li>
-<li>Cut manual IT effort by 35%+ through automation</li>
-</ul>
-</article>
+<section id="experience"><div class="wrap exp"><div><p class="label">Experience</p>
+<h2 class="display">From the service desk to leading IT engineering.</h2>
+<p class="lead">9 years of IT for remote and hybrid companies, in Canada, the US and Germany.</p></div>
+<ol><li><div class="meta">Oct 2025 – today<br>Berlin</div><div><h3>Taktile</h3><p class="role">Team Lead, IT Engineering (since Jul 2026) · Senior IT Engineer</p><p>Promoted to team lead within 10 months. Own IT, device management and IT compliance for a hybrid fintech across five offices.</p></div></li><li><div class="meta">Jul 2023 – Sep 2025<br>Berlin</div><div><h3>Leapsome</h3><p class="role">Senior IT Operations &amp; Systems Engineer II</p><p>Automated about 40% of user-access tasks with Okta workflows, ran the full device lifecycle for 160+ devices at 99% compliance, and led ISO 27001 and GDPR audits.</p></div></li><li><div class="meta">Aug 2021 – Jun 2023<br>Toronto area, Canada</div><div><h3>Viral Nation</h3><p class="role">TechOps Manager · Service Desk Team Lead · Service Desk Analyst</p><p>Three roles in under two years. Scaled IT as the company grew from 100 to 450+ people, and automated more than 60% of manual IT work with Jamf, Intune and UniFi.</p></div></li><li><div class="meta">Apr 2019 – Aug 2021<br>Toronto, Canada</div><div><h3>Coco Group of Companies</h3><p class="role">IT Support Analyst</p><p>Supported 1,000+ Microsoft 365 users and set up networks for 60+ locations across North America, with Windows servers and VMware behind them.</p></div></li><li><div class="meta">Dec 2017 – Apr 2019<br>Toronto area, Canada</div><div><h3>KS Tech Services</h3><p class="role">Network Administrator &amp; Data Recovery Specialist</p><p>Where it started: small-business networks, and getting back data people swore was gone.</p></div></li></ol></div></section>
 
-<article style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: center; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">Identity and access</h3></div>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.6; color: #3A4356; display: flex; flex-direction: column; gap: 6px">
-<li>Automated the access-request lifecycle, from request to approval to removal</li>
-<li>Reviewed and locked down the third-party apps connected to Google Workspace</li>
-<li>Own the hire-to-retire journey: onboarding, moves and offboarding</li>
-<li>Rolled out SSO across business tools, and help run quarterly access reviews</li>
-</ul>
-</article>
+<section class="tint" id="skills"><div class="wrap"><div class="head"><p class="label">Stack</p><h2 class="display">What I work with.</h2></div>
+<dl class="stack"><div><dt>Identity &amp; access</dt><dd>Okta · Okta Workflows · Microsoft Entra ID · SSO / SAML · Rippling IT (IAM) · AccessOwl · Trelica by 1Password · Access reviews</dd></div><div><dt>Device management</dt><dd>Windows &amp; macOS · Jamf Pro · Iru (formerly Kandji) · Microsoft Intune · SOTI</dd></div><div><dt>Networks &amp; cloud</dt><dd>Cisco routers &amp; switches · UniFi · VMware · AWS · Microsoft Azure</dd></div><div><dt>Security</dt><dd>CrowdStrike Falcon · SentinelOne · Bitdefender GravityZone · Aikido Device Protection · Barracuda Email Protection · Trend Micro Email Security · SpamTitan · Incident response</dd></div><div><dt>Compliance &amp; awareness</dt><dd>SOC 2 Type II · ISO 27001 · GDPR · Vanta · IT policy · Proofpoint ZenGuide · CanIPhish</dd></div><div><dt>Workplace &amp; collaboration</dt><dd>Google Workspace · Microsoft 365 · Office IT · Zoom Rooms · Google Meet · Logitech Rally Bar · Atlassian (Jira, Confluence) · Linear · ClickUp</dd></div><div><dt>Automation &amp; code</dt><dd>Python · Terraform · Pulumi · GitHub Actions · Zapier · n8n · REST APIs &amp; webhooks · Slack apps</dd></div><div><dt>AI engineering</dt><dd>AI agents in Slack · Claude API · Claude Code · OpenAI ChatGPT · Model Context Protocol (MCP) · Prompt design &amp; guardrails · Human-in-the-loop approvals · AI evaluation &amp; blind testing · Open models (Ollama) · OpenTelemetry tracing</dd></div><div><dt>IT operations &amp; leadership</dt><dd>SaaS management · Vendor &amp; contract management · Hardware &amp; software lifecycle · Hiring &amp; 1:1s</dd></div></dl></div></section>
 
-<article style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: center; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">Security and compliance</h3></div>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.6; color: #3A4356; display: flex; flex-direction: column; gap: 6px">
-<li>Own SOC 2 Type II and ISO 27001 controls, tests and vendor reviews</li>
-<li>Lead incident response, from containment to post-mortem</li>
-<li>Rolled out endpoint protection and company-wide data-retention policies</li>
-<li>Prepare controls and evidence for external audits</li>
-</ul>
-</article>
+<section id="projects"><div class="wrap"><div class="head"><p class="label">Selected projects · side work</p>
+<h2 class="display">Built in public, measured like production.</h2>
+<p class="lead">My side projects run on a made-up test company, Meridian: 230 people, 14 countries, an IT team of three. Its data is fake so I can show you everything. The test results are real.</p></div>
+<article class="card feature"><div><p class="meta">Featured · AI agents · ITSM · Security</p>
+<h3>Tier0: an AI help desk that knows when to ask a human</h3>
+<p>A Slack assistant built to answer simple IT questions around the clock. The AI only sorts the request; code checks who you are and writes every reply; anything risky goes to a person.</p>
+<ul><li>7 AI models on a sealed, blind test: 0 unsafe actions</li><li>Everyday accuracy up from 54% to 89–97% across milestones</li><li>Tested against real help-desk attack patterns reported by CISA</li></ul>
+<div class="cta" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn solid" href="https://kstarev.dev/meridian-it-lab/">Read the case study</a><a class="btn ghost" href="https://github.com/kstarev/meridian-it-lab">Code on GitHub</a></div>
+<div class="eng"><span>For engineers</span><a href="https://github.com/kstarev/meridian-it-lab/blob/main/docs/decisions.md">Decision records →</a><a href="https://github.com/kstarev/meridian-it-lab/tree/main/tier0/tests">Test suite →</a><a href="https://github.com/kstarev/meridian-it-lab/actions">CI runs →</a></div></div>
+<ul class="flow"><li><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg></span>You ask in Slack</li><li><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>Checks it's really you</li><li><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>Your account only</li><li><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c1-3.5 3.3-5 6-5s5 1.5 6 5"></path><path d="M16 11h5M18.5 8.5L21 11l-2.5 2.5"></path></svg></span>Risky? A person decides</li><li><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>Ticket closed</li></ul></article>
+<div class="cols c2" style="gap:24px"><article class="card"><p class="meta">In progress · Identity · Infrastructure as code</p><h3>Access-as-Code</h3>
+<p>"terraform plan" for people. Who should have access to what lives in GitHub. Every night it compares that with reality and opens a pull request, and nothing changes until a person approves it.</p>
+<p><a class="more" href="https://github.com/kstarev/meridian-it-lab/tree/main/access">Follow the build on GitHub →</a></p></article>
+<article class="card"><p class="meta">Planned · Knowledge · Runbooks</p><h3>Tier0 learns the playbook</h3>
+<p>Answering how-to questions from the IT team's approved guides. New guides are drafted from solved tickets, and a person approves each one.</p></article></div></div></section>
 
-<article style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: center; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">Devices and fleet</h3></div>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.6; color: #3A4356; display: flex; flex-direction: column; gap: 6px">
-<li>Brought 100% of laptops under device management, audit-ready</li>
-<li>Automated patching and security checks across the whole fleet</li>
-<li>Wrote and rolled out the hardware procurement and disposal policy for every site</li>
-<li>Built asset inventory for devices outside MDM</li>
-</ul>
-</article>
+<section class="tint" aria-labelledby="how-h"><div class="wrap"><div class="head"><p class="label">How I work</p><h2 class="display" id="how-h">Calm systems, written down, measured.</h2></div>
+<div class="cols c4"><div class="item proof"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-6 6 6 6"></path><path d="M16 6l6 6-6 6"></path></svg><h3>Code, not clicks</h3><p>Repeat work becomes a script, a pull request or a pipeline.</p><div class="num"><b>1,000+</b><span class="meta">automated tests run on every change</span><a class="more" href="https://github.com/kstarev/meridian-it-lab/actions">See the CI runs →</a></div></div><div class="item proof"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><path d="M6 16v-4"></path><path d="M11 16V6"></path><path d="M16 16v-7"></path></svg><h3>Measure before claiming</h3><p>I test my own work hard, publish the weak spots, and only quote numbers I can back up.</p><div class="num"><b>0</b><span class="meta">unsafe actions from 7 AI models, on 54 tests written blind</span><a class="more" href="https://github.com/kstarev/meridian-it-lab/blob/main/docs/evals/2026-11-12-held-out-v3-comparison.md">See the results →</a></div></div><div class="item proof"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21a7 7 0 0 1 14 0"></path><path d="M16 11l2 2 4-4"></path></svg><h3>People approve risky changes</h3><p>Automation handles the routine. Anything that touches access or security gets a human decision.</p><div class="num"><b>2</b><span class="meta">approvers needed before a large batch of access is removed</span><a class="more" href="https://github.com/kstarev/meridian-it-lab/blob/main/access/docs/adr/007-safety-rails.md">See the rule →</a></div></div><div class="item proof"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"></path></svg><h3>Built for remote and hybrid</h3><p>Decisions in writing, help in minutes, and an office that just works when people do come in.</p><div class="num"><b>36</b><span class="meta">decision records, written before building</span><a class="more" href="https://github.com/kstarev/meridian-it-lab/blob/main/docs/decisions.md">Read the decisions →</a></div></div></div>
+<p class="meta" style="margin-top:40px">Every number links to my public lab on GitHub. All data there is made up; nothing comes from an employer.</p></div></section>
 
-<article style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: center; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11"></path><path d="M9 20v-6h6v6"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">Offices for a hybrid company</h3></div>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.6; color: #3A4356; display: flex; flex-direction: column; gap: 6px">
-<li>Got a new New York office fully running in two weeks: internet, meeting-room AV, room booking</li>
-<li>Set up or rebuilt office IT in Berlin, Munich and Iași (Romania), with fast, stable internet</li>
-<li>Put visitor logs and audit evidence in place in every office</li>
-<li>Gave an office remote control of its own heating and cooling. Yes, IT does HVAC now</li>
-</ul>
-</article>
+<section id="certifications"><div class="wrap"><div class="head"><p class="label">Verified</p><h2 class="display">Certifications and education.</h2></div>
+<div class="certs"><a href="https://www.linkedin.com/in/kris-starev/details/certifications/"><img src="img/logo-microsoft.png" alt="" loading="lazy" decoding="async"><strong>Microsoft Applied Skills: Develop an agent with integrated tools</strong><span class="meta">Microsoft · Nov 2026</span></a><a href="https://www.linkedin.com/in/kris-starev/details/certifications/"><img src="img/comptia-security-plus.png" alt="" loading="lazy" decoding="async"><strong>CompTIA Security+ ce</strong><span class="meta">CompTIA · Jul 2026</span></a><a href="https://www.linkedin.com/in/kris-starev/details/certifications/"><img src="img/azure-fundamentals.png" alt="" loading="lazy" decoding="async"><strong>Microsoft Certified: Azure Fundamentals</strong><span class="meta">Microsoft · May 2023</span></a><a href="https://www.linkedin.com/in/kris-starev/details/certifications/"><img src="img/aws-saa.png" alt="" loading="lazy" decoding="async"><strong>AWS Certified Solutions Architect – Associate</strong><span class="meta">Amazon Web Services · Oct 2022</span></a><a href="https://www.linkedin.com/in/kris-starev/details/certifications/"><img src="img/comptia-network-plus.png" alt="" loading="lazy" decoding="async"><strong>CompTIA Network+ ce</strong><span class="meta">CompTIA · Jan 2022</span></a></div>
+<div class="cols c2 edu"><div><h3>Education</h3><ul>
+<li><img src="img/logo-centennial.png" alt="" loading="lazy" decoding="async"><div><strong>Advanced Diploma, Computer Systems Technology</strong><span class="meta">Centennial College · Toronto, Canada · 2017–2021 · Graduated with high honours · GPA 4.3</span></div></li>
+<li><img src="img/logo-seneca.png" alt="" loading="lazy" decoding="async"><div><strong>Business Administration, Management and Operations</strong><span class="meta">Seneca Polytechnic · Toronto, Canada</span></div></li></ul></div>
+<div><h3>Training</h3><ul>
+<li><img src="img/logo-anthropic.png" alt="" loading="lazy" decoding="async"><div><strong>Anthropic Claude Academy</strong><span class="meta">Claude 101 · Claude Code 101 · AI Fluency · AI capabilities and limitations · 2026</span></div></li>
+<li><img src="img/logo-kodekloud.png" alt="" loading="lazy" decoding="async"><div><strong>KodeKloud</strong><span class="meta">Pulumi Essentials · Terraform · DevOps · 12-Factor App · 2024–2025</span></div></li>
+<li><img src="img/aws-cloud-quest.png" alt="" loading="lazy" decoding="async"><div><strong>AWS Skill Builder</strong><span class="meta">Cloud Quest: Cloud Practitioner · training badge · 2022</span></div></li>
+<li><span class="tile">UD</span><div><strong>Udemy</strong><span class="meta">Google Workspace Admin · Ethical Hacking &amp; Penetration Testing</span></div></li></ul></div></div></div></section>
 
-<article style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: center; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c1-3.5 3.3-5 6-5s5 1.5 6 5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 15c2.5 0 4.3 1.6 5 4"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">Leading the team</h3></div>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.6; color: #3A4356; display: flex; flex-direction: column; gap: 6px">
-<li>Grew IT from one person to two: wrote the hiring brief and ran the technical interviews</li>
-<li>Added a New York engineer, so IT covers both European and US hours</li>
-<li>Built a live IT dashboard so any team can see IT's load and speed without asking</li>
-<li>Write decision records and policy proposals before big changes</li>
-</ul>
-</article>
-</div>
-</div>
-</section>
-<section id="experience" aria-labelledby="exp-h" style="background: #FFFFFF; border-top: 1px solid #E3E7EE; border-bottom: 1px solid #E3E7EE; padding: 96px 24px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px">
-<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #1D4ED8">// git log --career</p>
-<h2 id="exp-h" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.01em">From the service desk to leading IT engineering.</h2>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3A4356">9 years of IT for remote and hybrid companies, in Canada, the US and Germany. I've done every layer for real, so I design automation around what actually breaks.</p>
-</div>
-<ol style="flex: 999 1 560px; min-width: 0; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-left: 2px solid #E3E7EE">
-<li style="padding: 0 0 32px 28px; position: relative">
-<span style="position: absolute; left: -8px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: #2563EB; box-shadow: 0 0 0 4px #DBE7FF"></span>
-<div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #1D4ED8">Oct 2025 – today · Berlin</div>
-<h3 style="margin: 4px 0 2px; font-size: 19px; font-weight: 600">Taktile</h3>
-<div style="font-size: 15px; color: #3A4356">Team Lead, IT Engineering (since Jul 2026) · Senior IT Engineer</div>
-<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5B6478">Promoted to team lead within 10 months. Own IT, device management and IT compliance for a hybrid fintech across five offices.</p>
-</li>
-<li style="padding: 0 0 32px 28px; position: relative">
-<span style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; border: 2px solid #94A3B8; box-sizing: border-box"></span>
-<div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5B6478">Jul 2023 – Sep 2025 · Berlin</div>
-<h3 style="margin: 4px 0 2px; font-size: 19px; font-weight: 600">Leapsome</h3>
-<div style="font-size: 15px; color: #3A4356">Senior IT Operations &amp; Systems Engineer II</div>
-<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5B6478">Automated about 40% of user-access tasks with Okta workflows, ran the full device lifecycle for 160+ devices at 99% compliance, and led ISO 27001 and GDPR audits.</p>
-</li>
-<li style="padding: 0 0 32px 28px; position: relative">
-<span style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; border: 2px solid #94A3B8; box-sizing: border-box"></span>
-<div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5B6478">Aug 2021 – Jun 2023 · Toronto area, Canada</div>
-<h3 style="margin: 4px 0 2px; font-size: 19px; font-weight: 600">Viral Nation</h3>
-<div style="font-size: 15px; color: #3A4356">TechOps Manager · Service Desk Team Lead · Service Desk Analyst</div>
-<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5B6478">Three roles in under two years. Scaled IT as the company grew from 100 to 450+ people, and automated more than 60% of manual IT work with Jamf, Intune and UniFi.</p>
-</li>
-<li style="padding: 0 0 32px 28px; position: relative">
-<span style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; border: 2px solid #94A3B8; box-sizing: border-box"></span>
-<div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5B6478">Apr 2019 – Aug 2021 · Toronto, Canada</div>
-<h3 style="margin: 4px 0 2px; font-size: 19px; font-weight: 600">Coco Group of Companies</h3>
-<div style="font-size: 15px; color: #3A4356">IT Support Analyst</div>
-<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5B6478">Supported 1,000+ Microsoft 365 users and set up networks for 60+ locations across North America, with Windows servers and VMware behind them.</p>
-</li>
-<li style="padding: 0 0 0 28px; position: relative">
-<span style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; border: 2px solid #94A3B8; box-sizing: border-box"></span>
-<div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5B6478">Dec 2017 – Apr 2019 · Toronto area, Canada</div>
-<h3 style="margin: 4px 0 2px; font-size: 19px; font-weight: 600">KS Tech Services</h3>
-<div style="font-size: 15px; color: #3A4356">Network Administrator &amp; Data Recovery Specialist</div>
-<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5B6478">Where it started: small-business networks, and getting back data people swore was gone.</p>
-</li>
-</ol>
-</div>
-</section>
-<section id="skills" aria-labelledby="skills-h" style="padding: 96px 24px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 720px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #1D4ED8">// stack</p>
-<h2 id="skills-h" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.01em">What I work with.</h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">Identity &amp; access</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Okta</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Okta Workflows</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Microsoft Entra ID</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">SSO / SAML</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Rippling IT (IAM)</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">AccessOwl</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Trelica by 1Password</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Access reviews</span></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">Device management</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Windows &amp; macOS</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Jamf Pro</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Iru (formerly Kandji)</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Microsoft Intune</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">SOTI</span></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">Networks &amp; cloud</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Cisco routers &amp; switches</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">UniFi</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">VMware</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">AWS</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Microsoft Azure</span></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">Security</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">CrowdStrike Falcon</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">SentinelOne</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Bitdefender GravityZone</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Aikido Device Protection</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Barracuda Email Protection</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Trend Micro Email Security</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">SpamTitan</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Incident response</span></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">Compliance &amp; awareness</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">SOC 2 Type II</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">ISO 27001</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">GDPR</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Vanta</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">IT policy</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Proofpoint ZenGuide</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">CanIPhish</span></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">Workplace &amp; collaboration</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Google Workspace</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Microsoft 365</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Office IT</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Zoom Rooms</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Google Meet</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Logitech Rally Bar</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Atlassian (Jira, Confluence)</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Linear</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">ClickUp</span></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">Automation &amp; code</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Python</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Terraform</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Pulumi</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">GitHub Actions</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Zapier</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">n8n</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">REST APIs &amp; webhooks</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Slack apps</span></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">AI engineering</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">AI agents in Slack</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Claude API</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Claude Code</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">OpenAI ChatGPT</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Model Context Protocol (MCP)</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Prompt design &amp; guardrails</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Human-in-the-loop approvals</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">AI evaluation &amp; blind testing</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Open models (Ollama)</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">OpenTelemetry tracing</span></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px"><h3 style="margin: 0; font-size: 17px; font-weight: 600">IT operations &amp; leadership</h3><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px"><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">SaaS management</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Vendor &amp; contract management</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Hardware &amp; software lifecycle</span><span style="padding: 6px 11px; border-radius: 7px; background: #F1F4F8">Hiring &amp; 1:1s</span></div></div>
-</div>
-</div>
-</section>
-<section id="projects" aria-labelledby="projects-h" style="background: #FFFFFF; border-top: 1px solid #E3E7EE; border-bottom: 1px solid #E3E7EE; padding: 96px 24px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 760px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #1D4ED8">// selected projects · side work</p>
-<h2 id="projects-h" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.01em">Built in public, measured like production.</h2>
-<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3A4356">My side projects run on a made-up test company, Meridian: 230 people, 14 countries, an IT team of three. Its data is fake so I can show you everything. The test results are real.</p>
-</div>
-
-<article style="background: #0B1220; color: #F3F6FB; border-radius: 22px; overflow: hidden; display: flex; flex-wrap: wrap">
-<div style="flex: 999 1 520px; min-width: 0; padding: 40px; display: flex; flex-direction: column; gap: 18px">
-<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 6px; background: #13284A; color: #BFDBFE">Featured</span>
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 6px; border: 1px solid #2A3A5C; color: #B6C0D3">AI agents · ITSM · Security</span>
-</div>
-<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1">Tier0: an AI help desk that knows when to ask a human</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #B6C0D3; max-width: 560px">A Slack assistant built to answer simple IT questions around the clock. The AI only sorts the request; code checks who you are and writes every reply; anything risky goes to a person.</p>
-<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: #D4DBE8">
-<li style="display: flex; gap: 10px"><span style="color: #60A5FA">→</span>7 AI models on a sealed, blind test: 0 unsafe actions</li>
-<li style="display: flex; gap: 10px"><span style="color: #60A5FA">→</span>Everyday accuracy up from 54% to 89–97% across milestones</li>
-<li style="display: flex; gap: 10px"><span style="color: #60A5FA">→</span>Tested against real help-desk attack patterns reported by CISA</li>
-<li style="display: flex; gap: 10px"><span style="color: #60A5FA">→</span>1,157 automated tests; every published number checked against raw data</li>
-</ul>
-<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px">
-<a href="https://kstarev.dev/meridian-it-lab/" style="background: #2563EB; color: #FFFFFF; text-decoration: none; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 15px">Read the case study</a>
-<a href="https://github.com/kstarev/meridian-it-lab" style="color: #F3F6FB; text-decoration: none; padding: 11px 19px; border-radius: 10px; font-weight: 600; font-size: 15px; border: 1px solid #34466B">Code on GitHub</a>
-</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding-top: 14px; border-top: 1px solid #1F2C47; font-size: 14px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #8D99B0">For engineers</span><a href="https://github.com/kstarev/meridian-it-lab/blob/main/docs/decisions.md" style="color: #93C5FD; text-decoration: none">Decision records →</a><a href="https://github.com/kstarev/meridian-it-lab/tree/main/tier0/tests" style="color: #93C5FD; text-decoration: none">Test suite →</a><a href="https://github.com/kstarev/meridian-it-lab/actions" style="color: #93C5FD; text-decoration: none">CI runs →</a></div>
-</div>
-<div style="flex: 1 1 340px; min-width: 0; background: #0E1729; border-left: 1px solid #1F2C47; padding: 40px 32px; display: flex; flex-direction: column; justify-content: center; position: relative">
-<div style="position: relative">
-<div style="position: absolute; left: 26px; top: 35px; bottom: 35px; width: 2px; background: #24324D"></div>
-<div style="display: flex; align-items: center; gap: 14px; padding: 9px 0; position: relative"><span style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid #60A5FA; background: #13284A; color: #BFDBFE; display: flex; align-items: center; justify-content: center; flex: none"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg></span><span style="font-size: 15px; font-weight: 600">You ask in Slack</span></div>
-<div style="display: flex; align-items: center; gap: 14px; padding: 9px 0; position: relative"><span style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid #60A5FA; background: #13284A; color: #BFDBFE; display: flex; align-items: center; justify-content: center; flex: none"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span><span style="font-size: 15px; font-weight: 600">Checks it's really you</span></div>
-<div style="display: flex; align-items: center; gap: 14px; padding: 9px 0; position: relative"><span style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid #60A5FA; background: #13284A; color: #BFDBFE; display: flex; align-items: center; justify-content: center; flex: none"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span><span style="font-size: 15px; font-weight: 600">Your account only</span></div>
-<div style="display: flex; align-items: center; gap: 14px; padding: 9px 0; position: relative"><span style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid #F59E0B; background: #2A1F0E; color: #FCD34D; display: flex; align-items: center; justify-content: center; flex: none"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c1-3.5 3.3-5 6-5s5 1.5 6 5"></path><path d="M16 11h5M18.5 8.5L21 11l-2.5 2.5"></path></svg></span><span style="font-size: 15px; font-weight: 600">Risky? A person decides</span></div>
-<div style="display: flex; align-items: center; gap: 14px; padding: 9px 0; position: relative"><span style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid #60A5FA; background: #13284A; color: #BFDBFE; display: flex; align-items: center; justify-content: center; flex: none"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span><span style="font-size: 15px; font-weight: 600">Ticket closed</span></div>
-</div>
-</div>
-</article>
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
-<article style="background: #F8FAFC; border: 1px solid #E3E7EE; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 6px; background: #ECFDF5; color: #047857">In progress</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 6px; border: 1px solid #E3E7EE; color: #5B6478">Identity · Infrastructure as code</span></div>
-<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px">Access-as-Code</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A4356">"terraform plan" for people. Who should have access to what lives in GitHub. Every night it compares that with reality and opens a pull request with the changes, and nothing changes until a person approves it.</p>
-<a href="https://github.com/kstarev/meridian-it-lab/tree/main/access" style="align-self: flex-start; margin-top: 4px; font-size: 15px; font-weight: 600; color: #1D4ED8; text-decoration: none">Follow the build on GitHub →</a>
-</article>
-<article style="background: #F8FAFC; border: 1px solid #E3E7EE; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 6px; background: #EFF4FF; color: #1D4ED8">Planned</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 6px; border: 1px solid #E3E7EE; color: #5B6478">Knowledge · Runbooks</span></div>
-<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px">Tier0 learns the playbook</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A4356">Answering how-to questions from the IT team's approved guides. New guides are drafted from solved tickets, and a person approves each one.</p>
-</article>
-</div>
-</div>
-</section>
-<section aria-labelledby="how-h" style="padding: 88px 24px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 720px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #1D4ED8">// how I work</p>
-<h2 id="how-h" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.01em">Calm systems, written down, measured.</h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-6 6 6 6"></path><path d="M16 6l6 6-6 6"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">Code, not clicks</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A4356">Repeat work becomes a script, a pull request or a pipeline. Future me says thanks.</p><div style="margin-top: auto; padding-top: 16px; border-top: 1px solid #E3E7EE; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; line-height: 1; color: #1D4ED8">1,000+</span><span style="font-size: 14px; line-height: 1.5; color: #3A4356">automated tests run on every change</span><a href="https://github.com/kstarev/meridian-it-lab/actions" style="font-size: 14px; font-weight: 600; color: #1D4ED8; text-decoration: none">See the CI runs →</a></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><path d="M6 16v-4"></path><path d="M11 16V6"></path><path d="M16 16v-7"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">Measure before claiming</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A4356">I test my own work hard, publish the weak spots, and only quote numbers I can back up.</p><div style="margin-top: auto; padding-top: 16px; border-top: 1px solid #E3E7EE; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; line-height: 1; color: #1D4ED8">0</span><span style="font-size: 14px; line-height: 1.5; color: #3A4356">unsafe actions from 7 AI models, on 54 tests written blind</span><a href="https://github.com/kstarev/meridian-it-lab/blob/main/docs/evals/2026-11-12-held-out-v3-comparison.md" style="font-size: 14px; font-weight: 600; color: #1D4ED8; text-decoration: none">See the results →</a></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21a7 7 0 0 1 14 0"></path><path d="M16 11l2 2 4-4"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">People approve risky changes</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A4356">Automation handles the routine. Anything that touches access or security gets a human decision.</p><div style="margin-top: auto; padding-top: 16px; border-top: 1px solid #E3E7EE; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; line-height: 1; color: #1D4ED8">2</span><span style="font-size: 14px; line-height: 1.5; color: #3A4356">approvers needed before a large batch of access is removed</span><a href="https://github.com/kstarev/meridian-it-lab/blob/main/access/docs/adr/007-safety-rails.md" style="font-size: 14px; font-weight: 600; color: #1D4ED8; text-decoration: none">See the rule →</a></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 12px"><span style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 600">Built for remote and hybrid</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A4356">Decisions in writing, help in minutes, and an office that just works when people do come in.</p><div style="margin-top: auto; padding-top: 16px; border-top: 1px solid #E3E7EE; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; line-height: 1; color: #1D4ED8">36</span><span style="font-size: 14px; line-height: 1.5; color: #3A4356">decision records, written before building</span><a href="https://github.com/kstarev/meridian-it-lab/blob/main/docs/decisions.md" style="font-size: 14px; font-weight: 600; color: #1D4ED8; text-decoration: none">Read the decisions →</a></div></div>
-</div>
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5B6478">Every number links to my public lab on GitHub. All data there is made up; nothing comes from an employer.</p>
-</div>
-</section>
-<section id="certifications" aria-labelledby="cert-h" style="background: #FFFFFF; border-top: 1px solid #E3E7EE; padding: 96px 24px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 720px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #1D4ED8">// verified</p>
-<h2 id="cert-h" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.01em">Certifications and education.</h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
-<a href="https://www.linkedin.com/in/kris-starev/details/certifications/" style="text-decoration: none; color: #141A26; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 20px; display: flex; gap: 14px; align-items: center"><span style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; flex: none"><img loading="lazy" decoding="async" src="img/logo-microsoft.png" alt="Microsoft logo" width="46" height="46" style="width: 46px; height: 46px; border-radius: 10px; border: 1px solid #E3E7EE; display: block"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 15px">Microsoft Applied Skills: Develop an agent with integrated tools</span><span style="font-size: 13px; color: #5B6478">Microsoft · Nov 2026</span></span></a>
-<a href="https://www.linkedin.com/in/kris-starev/details/certifications/" style="text-decoration: none; color: #141A26; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 20px; display: flex; gap: 14px; align-items: center"><img loading="lazy" decoding="async" src="img/comptia-security-plus.png" alt="CompTIA Security+ badge" width="60" height="60" style="width: 60px; height: 60px; object-fit: contain; flex: none"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 15px">CompTIA Security+ ce</span><span style="font-size: 13px; color: #5B6478">CompTIA · Jul 2026</span></span></a>
-<a href="https://www.linkedin.com/in/kris-starev/details/certifications/" style="text-decoration: none; color: #141A26; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 20px; display: flex; gap: 14px; align-items: center"><img loading="lazy" decoding="async" src="img/azure-fundamentals.png" alt="Microsoft Certified: Azure Fundamentals badge" width="60" height="60" style="width: 60px; height: 60px; object-fit: contain; flex: none"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 15px">Microsoft Certified: Azure Fundamentals</span><span style="font-size: 13px; color: #5B6478">Microsoft · May 2023</span></span></a>
-<a href="https://www.linkedin.com/in/kris-starev/details/certifications/" style="text-decoration: none; color: #141A26; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 20px; display: flex; gap: 14px; align-items: center"><img loading="lazy" decoding="async" src="img/aws-saa.png" alt="AWS Certified Solutions Architect – Associate badge" width="60" height="60" style="width: 60px; height: 60px; object-fit: contain; flex: none"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 15px">AWS Certified Solutions Architect – Associate</span><span style="font-size: 13px; color: #5B6478">Amazon Web Services · Oct 2022</span></span></a>
-<a href="https://www.linkedin.com/in/kris-starev/details/certifications/" style="text-decoration: none; color: #141A26; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 20px; display: flex; gap: 14px; align-items: center"><img loading="lazy" decoding="async" src="img/comptia-network-plus.png" alt="CompTIA Network+ badge" width="60" height="60" style="width: 60px; height: 60px; object-fit: contain; flex: none"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 15px">CompTIA Network+ ce</span><span style="font-size: 13px; color: #5B6478">CompTIA · Jan 2022</span></span></a>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; align-items: start">
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 22px 22px 8px; display: flex; flex-direction: column"><div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 12px"><h3 style="margin: 0; font-size: 16px; font-weight: 600">Education</h3><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B6478">2 programmes</span></div><div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #EEF1F5"><img loading="lazy" decoding="async" src="img/logo-centennial.png" alt="Centennial College logo" width="40" height="40" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #E3E7EE; object-fit: contain; flex: none; background: #FFFFFF"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-weight: 600; font-size: 15px; color: #141A26; line-height: 1.35">Advanced Diploma, Computer Systems Technology</span><span style="font-size: 13px; color: #5B6478">Centennial College · Toronto, Canada · 2017–2021</span><span style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px"><span style="padding: 3px 9px; border-radius: 999px; background: #ECFDF5; color: #047857; font-size: 12px; font-weight: 600">★ Graduated with high honours</span><span style="padding: 3px 9px; border-radius: 999px; background: #F1F4F8; color: #3A4356; font-size: 12px; font-weight: 600">GPA 4.3</span></span></div></div><div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #EEF1F5"><img loading="lazy" decoding="async" src="img/logo-seneca.png" alt="Seneca Polytechnic logo" width="40" height="40" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #E3E7EE; object-fit: contain; flex: none; background: #FFFFFF"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-weight: 600; font-size: 15px; color: #141A26; line-height: 1.35">Business Administration, Management and Operations</span><span style="font-size: 13px; color: #5B6478">Seneca Polytechnic · Toronto, Canada</span></div></div></div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 22px 22px 8px; display: flex; flex-direction: column"><div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 12px"><h3 style="margin: 0; font-size: 16px; font-weight: 600">Training and badges</h3><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B6478">11 courses</span></div><div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #EEF1F5"><img loading="lazy" decoding="async" src="img/logo-anthropic.png" alt="Anthropic logo" width="40" height="40" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #E3E7EE; object-fit: contain; flex: none; background: #FFFFFF"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-weight: 600; font-size: 15px; color: #141A26">Anthropic Claude Academy <span style="font-weight: 400; font-size: 13px; color: #5B6478">· 4 courses · 2026</span></span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">Claude 101</span><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">Claude Code 101</span><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">AI Fluency: Framework and foundations</span><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">AI capabilities and limitations</span></div></div></div><div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #EEF1F5"><img loading="lazy" decoding="async" src="img/logo-kodekloud.png" alt="KodeKloud logo" width="40" height="40" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #E3E7EE; object-fit: contain; flex: none; background: #FFFFFF"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-weight: 600; font-size: 15px; color: #141A26">KodeKloud <span style="font-weight: 400; font-size: 13px; color: #5B6478">· 4 courses · 2024–2025</span></span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">Pulumi Essentials</span><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">Terraform</span><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">DevOps</span><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">12‑Factor App</span></div></div></div><div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #EEF1F5"><img loading="lazy" decoding="async" src="img/aws-cloud-quest.png" alt="AWS Cloud Quest: Cloud Practitioner training badge" width="40" height="40" style="width: 40px; height: 40px; object-fit: contain; flex: none"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-weight: 600; font-size: 15px; color: #141A26">AWS Skill Builder <span style="font-weight: 400; font-size: 13px; color: #5B6478">· training badge · 2022</span></span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">Cloud Quest: Cloud Practitioner</span></div></div></div><div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #EEF1F5"><span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 10px; background: #EFF4FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; flex: none">UD</span><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-weight: 600; font-size: 15px; color: #141A26">Udemy <span style="font-weight: 400; font-size: 13px; color: #5B6478">· 2 courses</span></span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">Google Workspace Admin</span><span style="padding: 4px 9px; border-radius: 6px; background: #F1F4F8; font-size: 13px; color: #3A4356">Ethical Hacking &amp; Penetration Testing</span></div></div></div></div>
-</div>
-</div>
-</section>
-<section id="contact" aria-labelledby="contact-h" style="background: #0B1220; color: #F3F6FB; padding: 96px 24px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: space-between">
-<div style="flex: 999 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
-<h2 id="contact-h" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(32px, 4.5vw, 48px); line-height: 1.08; letter-spacing: -0.01em">Building a remote or hybrid IT team? Let's talk.</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #B6C0D3">EU and Canadian citizen: fully authorized to work anywhere in the EU, and open to roles elsewhere with visa sponsorship. Fast replies are kind of my thing.</p>
-</div>
-<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
-<a href="mailto:hello@kstarev.dev" style="background: #2563EB; color: #FFFFFF; text-decoration: none; padding: 16px 22px; border-radius: 12px; font-weight: 600; font-size: 16px; text-align: center">hello@kstarev.dev</a>
-<div style="display: flex; gap: 12px">
-<a href="https://www.linkedin.com/in/kris-starev" style="flex: 1 1 0; color: #F3F6FB; text-decoration: none; padding: 14px 16px; border-radius: 12px; font-weight: 600; font-size: 15px; border: 1px solid #34466B; text-align: center">LinkedIn</a>
-<a href="https://github.com/kstarev" style="flex: 1 1 0; color: #F3F6FB; text-decoration: none; padding: 14px 16px; border-radius: 12px; font-weight: 600; font-size: 15px; border: 1px solid #34466B; text-align: center">GitHub</a>
-</div>
-</div>
-</div>
-</section>
-
+<section class="dark contact" id="contact"><div class="wrap"><div><h2 class="display">Building a remote or hybrid IT team? Let's talk.</h2>
+<p class="lead">EU and Canadian citizen: fully authorized to work anywhere in the EU, and open to roles elsewhere with visa sponsorship.</p></div>
+<div class="cta"><a class="btn solid" href="mailto:hello@kstarev.dev">hello@kstarev.dev</a><div class="row"><a class="btn ghost" href="https://www.linkedin.com/in/kris-starev">LinkedIn</a><a class="btn ghost" href="https://github.com/kstarev">GitHub</a></div></div></div></section>
 </main>
-<footer style="background: #0B1220; border-top: 1px solid #1C2840; padding: 24px">
-<div style="max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 14px; color: #8D99B0">
-<span>© 2026 Kris Starev · Every fact on this page is true · Built with Claude Code · 0 unsafe actions so far</span>
-<div style="display: flex; gap: 18px">
-<a href="privacy.html" style="color: #B6C0D3">Privacy</a>
-</div>
-</div>
-</footer>
-
+<footer class="dark"><div class="wrap"><span>© 2026 Kris Starev</span><a href="privacy.html">Privacy</a></div></footer>
 </div>
 </body>
 </html>
